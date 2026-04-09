@@ -1,0 +1,40 @@
+{
+  "rewrites": [
+    {
+      "source": "/roblox-api/economy/:path*",
+      "destination": "https://economy.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-api/thumbnails/:path*",
+      "destination": "https://thumbnails.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-api/users/:path*",
+      "destination": "https://users.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-api/games/:path*",
+      "destination": "https://games.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-api/apis/:path*",
+      "destination": "https://apis.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-api/gamepasses/:path*",
+      "destination": "https://gamepasses.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-api/www/:path*",
+      "destination": "https://www.roblox.com/:path*"
+    },
+    {
+      "source": "/roblox-cdn-tr/:path*",
+      "destination": "https://tr.rbxcdn.com/:path*"
+    },
+    {
+      "source": "/roblox-cdn-t0/:path*",
+      "destination": "https://t0.rbxcdn.com/:path*"
+    }
+  ]
+}
