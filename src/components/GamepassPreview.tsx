@@ -11,6 +11,14 @@ interface GamepassPreviewProps {
 const GamepassPreview: React.FC<GamepassPreviewProps> = ({ data, containerRef }) => {
   if (!data) return null;
 
+  const getFontSize = (name: string) => {
+    if (name.length <= 15) return '52px';
+    if (name.length <= 25) return '42px';
+    if (name.length <= 40) return '34px';
+    if (name.length <= 60) return '28px';
+    return '22px';
+  };
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -118,9 +126,22 @@ const GamepassPreview: React.FC<GamepassPreviewProps> = ({ data, containerRef })
           ═══════════════════════════════ */}
       <div style={{ flex: 1 }}>
 
-        {/* Title */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <h1 style={{ fontSize: '52px', margin: 0, fontWeight: 650, lineHeight: 1.1, color: '#202227' }}>{data.name}</h1>
+          <h1 style={{ 
+            fontSize: getFontSize(data.name), 
+            margin: 0, 
+            fontWeight: 650, 
+            lineHeight: 1.1, 
+            color: '#202227',
+            wordBreak: 'break-word',
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            maxHeight: '180px'
+          }}>
+            {data.name}
+          </h1>
           <MoreHorizontal size={28} color="#202227" style={{ marginTop: '10px', flexShrink: 0 }} />
         </div>
 

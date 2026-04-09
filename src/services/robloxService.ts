@@ -3,7 +3,7 @@ export interface GamepassData {
   name: string;
   price: number;
   username: string;
-  universeId: string;
+  placeId: string;
   gameName: string;
   iconUrl: string;
   gameIconUrl: string;
@@ -90,6 +90,7 @@ export const getGamepassDetails = async (id: string, onLog: (msg: string) => voi
       }
     }
 
+    let placeId = 'N/A';
     let gameIconUrl = '';
     let gameName = 'Unknown Game';
     if (universeId) {
@@ -100,12 +101,19 @@ export const getGamepassDetails = async (id: string, onLog: (msg: string) => voi
 
       if (gameRes.ok) {
         const gameData = await gameRes.json();
-        gameName = gameData.data[0]?.name || 'Unknown Game';
+        const gameInfo = gameData.data[0];
+        gameName = gameInfo?.name || 'Unknown Game';
+        placeId = gameInfo?.rootPlaceId ? String(gameInfo.rootPlaceId) : 'N/A';
       }
       if (gameThumbRes.ok) {
         const thumbData = await gameThumbRes.json();
         gameIconUrl = await imageToBase64(thumbData.data[0]?.imageUrl);
       }
+    }
+
+    // Fallback if placeId still N/A but it's in productInfo
+    if (placeId === 'N/A' && productInfo.PlaceId) {
+      placeId = String(productInfo.PlaceId);
     }
 
     onLog('Synchronization complete ✔');
@@ -115,7 +123,7 @@ export const getGamepassDetails = async (id: string, onLog: (msg: string) => voi
       name: productInfo.Name,
       price: productInfo.PriceInRobux || 0,
       username: productInfo.Creator?.Name || 'Unknown',
-      universeId: universeId ? String(universeId) : 'N/A',
+      placeId,
       gameName,
       iconUrl,
       gameIconUrl,

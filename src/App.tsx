@@ -147,12 +147,12 @@ function App() {
             {gamepassData ? (
               <div className="results-container">
                 <div className="data-cards">
-                  <div className="data-card clickable" onClick={() => handleCopyText(gamepassData.universeId, 'UniverseId')}>
+                  <div className="data-card clickable" onClick={() => handleCopyText(gamepassData.placeId, 'PlaceId')}>
                     <div className="card-top">
-                      <span className="label">Universe ID</span>
-                      {copyState.UniverseId ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
+                      <span className="label">Place ID</span>
+                      {copyState.PlaceId ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
                     </div>
-                    <span className="value">{gamepassData.universeId}</span>
+                    <span className="value">{gamepassData.placeId}</span>
                   </div>
                   <div className="data-card clickable" onClick={() => handleCopyText(gamepassData.username, 'Owner')}>
                     <div className="card-top">
